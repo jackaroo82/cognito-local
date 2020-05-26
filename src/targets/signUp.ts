@@ -43,7 +43,7 @@ export const SignUp = ({
     UserCreateDate: new Date().getTime(),
     UserLastModifiedDate: new Date().getTime(),
     UserStatus: "UNCONFIRMED",
-    Username: uuid.v4(),
+    Username: body.Username,
   };
 
   const deliveryDetails: DeliveryDetails = {

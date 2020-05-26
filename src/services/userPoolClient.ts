@@ -115,6 +115,10 @@ export const createUserPoolClient = async (
       const users = await dataStore.get<Record<string, User>>("Users", {});
 
       for (const user of Object.values(users)) {
+        if (user.Username === username) {
+          return user;
+        }
+
         if (attributesIncludeMatch("sub", username, user.Attributes)) {
           return user;
         }
