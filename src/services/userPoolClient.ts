@@ -27,7 +27,7 @@ export const attributesInclude = (
 export const attributeValue = (
   attributeName: string,
   attributes: readonly UserAttribute[]
-) => attributes.find((x) => x.Name === attributeName) ?.Value;
+) => attributes.find((x) => x.Name === attributeName)?.Value;
 export const attributesToRecord = (
   attributes: readonly UserAttribute[]
 ): Record<string, string> =>
@@ -58,7 +58,6 @@ export interface UserPool {
   Id: string;
   UsernameAttributes?: UsernameAttribute[];
   MfaConfiguration?: "OFF" | "ON" | "OPTIONAL";
-  AutoCreateUser?: boolean
 }
 
 export interface UserPoolClient {
@@ -108,8 +107,8 @@ export const createUserPoolClient = async (
     async getUserByUsername(username) {
       log.debug("getUserByUsername", username);
 
-      const aliasEmailEnabled = config.UsernameAttributes ?.includes("email");
-      const aliasPhoneNumberEnabled = config.UsernameAttributes ?.includes(
+      const aliasEmailEnabled = config.UsernameAttributes?.includes("email");
+      const aliasPhoneNumberEnabled = config.UsernameAttributes?.includes(
         "phone_number"
       );
 
