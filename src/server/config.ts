@@ -21,6 +21,7 @@ const defaults: Config = {
   UserPoolDefaults: {
     Id: "local",
     UsernameAttributes: ["email"],
+    AutoCreateUser: false,
   },
 };
 
