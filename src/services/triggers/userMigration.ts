@@ -58,6 +58,7 @@ export const UserMigration = ({
     UserLastModifiedDate: new Date().getTime(),
     Username: uuid.v4(),
     UserStatus: result.finalUserStatus ?? "CONFIRMED",
+    IdentityId: uuid.v4(),
   };
 
   if (result.forceAliasCreation) {

@@ -44,6 +44,7 @@ export const SignUp = ({
     UserLastModifiedDate: new Date().getTime(),
     UserStatus: "UNCONFIRMED",
     Username: body.Username,
+    IdentityId: uuid.v4(),
   };
 
   const deliveryDetails: DeliveryDetails = {

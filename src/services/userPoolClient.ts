@@ -45,6 +45,7 @@ export interface User {
   UserStatus: "CONFIRMED" | "UNCONFIRMED" | "RESET_REQUIRED";
   Attributes: readonly UserAttribute[];
   MFAOptions?: readonly MFAOption[];
+  IdentityId: string;
 
   // extra attributes for Cognito Local
   Password: string;
