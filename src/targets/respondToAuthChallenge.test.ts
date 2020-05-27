@@ -80,6 +80,7 @@ describe("RespondToAuthChallenge target", () => {
         UserCreateDate: new Date().getTime(),
         UserLastModifiedDate: new Date().getTime(),
         MFACode: "1234",
+        IdentityId: "Some id",
       });
 
       const output = await respondToAuthChallenge({
@@ -153,6 +154,7 @@ describe("RespondToAuthChallenge target", () => {
         UserCreateDate: new Date().getTime(),
         UserLastModifiedDate: new Date().getTime(),
         MFACode: "1234",
+        IdentityId: "some id",
       });
 
       await expect(

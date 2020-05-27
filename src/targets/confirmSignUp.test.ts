@@ -66,6 +66,7 @@ describe("ConfirmSignUp target", () => {
       UserLastModifiedDate: now.getTime(),
       UserStatus: "UNCONFIRMED",
       Username: "0000-0000",
+      IdentityId: "Some id",
     });
 
     await expect(
@@ -89,6 +90,7 @@ describe("ConfirmSignUp target", () => {
         UserLastModifiedDate: now.getTime(),
         UserStatus: "UNCONFIRMED",
         Username: "0000-0000",
+        IdentityId: "Some id",
       });
 
       // advance the time so we can see the last modified timestamp change
@@ -127,6 +129,7 @@ describe("ConfirmSignUp target", () => {
           UserLastModifiedDate: now.getTime(),
           UserStatus: "UNCONFIRMED",
           Username: "0000-0000",
+          IdentityId: "Some id",
         });
 
         await confirmSignUp({
@@ -164,6 +167,7 @@ describe("ConfirmSignUp target", () => {
           UserLastModifiedDate: now.getTime(),
           UserStatus: "UNCONFIRMED",
           Username: "0000-0000",
+          IdentityId: "Some id",
         });
 
         await confirmSignUp({

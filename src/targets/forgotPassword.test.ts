@@ -63,6 +63,7 @@ describe("ForgotPassword target", () => {
       UserLastModifiedDate: now.getTime(),
       UserStatus: "CONFIRMED",
       Username: "0000-0000",
+      IdentityId: "Some id",
     });
     mockCodeDelivery.mockResolvedValue("1234");
 
@@ -106,6 +107,7 @@ describe("ForgotPassword target", () => {
       UserLastModifiedDate: now.getTime(),
       UserStatus: "CONFIRMED",
       Username: "0000-0000",
+      IdentityId: "Some id",
     });
     mockCodeDelivery.mockResolvedValue("1234");
 

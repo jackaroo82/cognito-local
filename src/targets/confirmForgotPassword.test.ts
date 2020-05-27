@@ -69,6 +69,7 @@ describe("ConfirmForgotPassword target", () => {
       UserLastModifiedDate: now.getTime(),
       UserStatus: "UNCONFIRMED",
       Username: "0000-0000",
+      IdentityId: "Some id",
     });
 
     await expect(
@@ -92,6 +93,7 @@ describe("ConfirmForgotPassword target", () => {
         UserLastModifiedDate: now.getTime(),
         UserStatus: "UNCONFIRMED",
         Username: "0000-0000",
+        IdentityId: "Some id",
       });
 
       // advance the time so we can see the last modified timestamp change
@@ -130,6 +132,7 @@ describe("ConfirmForgotPassword target", () => {
           UserLastModifiedDate: now.getTime(),
           UserStatus: "UNCONFIRMED",
           Username: "0000-0000",
+          IdentityId: "Some id",
         });
 
         await confirmForgotPassword({
@@ -167,6 +170,7 @@ describe("ConfirmForgotPassword target", () => {
           UserLastModifiedDate: now.getTime(),
           UserStatus: "UNCONFIRMED",
           Username: "0000-0000",
+          IdentityId: "Some id",
         });
 
         await confirmForgotPassword({

@@ -53,6 +53,7 @@ describe("ListUsers target", () => {
         UserCreateDate: new Date().getTime(),
         UserLastModifiedDate: new Date().getTime(),
         ConfirmationCode: "1234",
+        IdentityId: "Some id 1",
       },
       {
         Attributes: [],
@@ -62,6 +63,7 @@ describe("ListUsers target", () => {
         Enabled: true,
         UserCreateDate: new Date().getTime(),
         UserLastModifiedDate: new Date().getTime(),
+        IdentityId: "Some id 2",
       },
     ]);
 

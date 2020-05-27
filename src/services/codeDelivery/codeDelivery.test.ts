@@ -11,6 +11,7 @@ describe("Code Delivery", () => {
     Enabled: true,
     UserCreateDate: new Date().getTime(),
     UserLastModifiedDate: new Date().getTime(),
+    IdentityId: "Some id",
   };
 
   describe("when delivery method is EMAIL", () => {

@@ -67,6 +67,7 @@ describe("InitiateAuth target", () => {
         Enabled: true,
         UserCreateDate: new Date().getTime(),
         UserLastModifiedDate: new Date().getTime(),
+        IdentityId: "Some id",
       });
 
       await expect(
@@ -91,6 +92,7 @@ describe("InitiateAuth target", () => {
         Enabled: true,
         UserCreateDate: new Date().getTime(),
         UserLastModifiedDate: new Date().getTime(),
+        IdentityId: "Some id",
       });
 
       await expect(
@@ -118,6 +120,7 @@ describe("InitiateAuth target", () => {
             UserCreateDate: new Date().getTime(),
             Enabled: true,
             Attributes: [],
+            IdentityId: "Some id",
           });
           mockUserPoolClient.getUserByUsername.mockResolvedValue(null);
 
@@ -186,6 +189,7 @@ describe("InitiateAuth target", () => {
                   AttributeName: "phone_number",
                 },
               ],
+              IdentityId: "Some id",
             };
             mockUserPoolClient.getUserByUsername.mockResolvedValue(user);
           });
@@ -230,6 +234,7 @@ describe("InitiateAuth target", () => {
               Enabled: true,
               UserCreateDate: new Date().getTime(),
               UserLastModifiedDate: new Date().getTime(),
+              IdentityId: "Some id",
             });
           });
 
@@ -277,6 +282,7 @@ describe("InitiateAuth target", () => {
                   AttributeName: "phone_number",
                 },
               ],
+              IdentityId: "Some id",
             };
             mockUserPoolClient.getUserByUsername.mockResolvedValue(user);
           });
@@ -324,6 +330,7 @@ describe("InitiateAuth target", () => {
               Enabled: true,
               UserCreateDate: new Date().getTime(),
               UserLastModifiedDate: new Date().getTime(),
+              IdentityId: "Some id",
             });
           });
 
@@ -409,6 +416,7 @@ describe("InitiateAuth target", () => {
             Enabled: true,
             UserCreateDate: new Date().getTime(),
             UserLastModifiedDate: new Date().getTime(),
+            IdentityId: "Some id",
           });
           const output = (await initiateAuth({
             ClientId: "clientId",

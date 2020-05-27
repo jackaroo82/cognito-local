@@ -90,6 +90,7 @@ describe("User Pool Client", () => {
         UserLastModifiedDate: now,
         UserCreateDate: now,
         Enabled: true,
+        IdentityId: "Some id",
       });
 
       expect(mockDataStore.set).toHaveBeenCalledWith("Users.1", {

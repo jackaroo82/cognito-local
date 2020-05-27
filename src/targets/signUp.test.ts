@@ -54,6 +54,7 @@ describe("SignUp target", () => {
       UserLastModifiedDate: now.getTime(),
       UserStatus: "CONFIRMED",
       Username: "0000-0000",
+      IdentityId: "some id",
     });
 
     await expect(
