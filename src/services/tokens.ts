@@ -13,6 +13,7 @@ export interface Token {
   scope: string;
   auth_time: Date;
   jti: string;
+  aud: string;
 }
 
 export function generateTokens(

@@ -6,7 +6,8 @@ import { Token } from "../services/tokens";
 import { MFAOption, UserAttribute } from "../services/userPoolClient";
 
 interface Input {
-  AccessToken: string;
+  IdentityPoolId: string;
+  Logins: Map<string, string>;
 }
 
 interface Output {
@@ -19,30 +20,32 @@ export type GetIdTarget = (body: Input) => Promise<Output | null>;
 export const GetId = ({ cognitoClient }: Services): GetIdTarget => async (
   body
 ) => {
-  const decodedToken = jwt.decode(body.AccessToken) as Token | null;
-  if (!decodedToken) {
-    log.info("Unable to decode token");
-    throw new InvalidParameterError();
+  for (const key in body.Logins.keys()) {
+    if (key.startsWith("cognito-idp.")) {
+      const encoded_jwt: string = body.Logins.get(key) as string;
+      const decodedToken = jwt.decode(encoded_jwt) as Token | null;
+      if (!decodedToken) {
+        log.info("Unable to decode token");
+        throw new InvalidParameterError();
+      }
+      const { sub, aud } = decodedToken;
+      if (!sub || !aud) {
+        return null;
+      }
+
+      const userPool = await cognitoClient.getUserPoolForClientId(aud);
+      const user = await userPool.getUserByUsername(sub);
+      if (!user) {
+        return null;
+      }
+
+      const output: Output = {
+        IdentityId: user.IdentityId,
+      };
+
+      return output;
+    }
   }
 
-  const { sub, client_id } = decodedToken;
-  if (!sub || !client_id) {
-    return null;
-  }
-
-  const userPool = await cognitoClient.getUserPoolForClientId(client_id);
-  const user = await userPool.getUserByUsername(sub);
-  if (!user) {
-    return null;
-  }
-
-  const output: Output = {
-    IdentityId: user.IdentityId,
-  };
-
-  if (user.MFAOptions) {
-    output.MFAOptions = user.MFAOptions;
-  }
-
-  return output;
+  return null;
 };
