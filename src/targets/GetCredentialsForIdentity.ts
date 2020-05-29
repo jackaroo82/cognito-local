@@ -1,25 +1,32 @@
 import jwt from "jsonwebtoken";
-import { InvalidParameterError } from "../errors";
-import log from "../log";
 import { Services } from "../services";
+import { InvalidParameterError } from "../errors";
 import { Token } from "../services/tokens";
-import { MFAOption, UserAttribute } from "../services/userPoolClient";
+import log from "../log";
+import * as uuid from "uuid";
 
 interface Input {
-  IdentityPoolId: string;
+  IdentityId: string;
   Logins: any;
 }
-
+interface Credentials {
+  AccessKeyId: string;
+  Expiration: number;
+  SecretKey: string;
+  SessionToken: string;
+}
 interface Output {
+  Credentials: Credentials;
   IdentityId: string;
-  MFAOptions?: readonly MFAOption[];
 }
 
-export type GetIdTarget = (body: Input) => Promise<Output | null>;
+export type GetCredentialsForIdentityTarget = (
+  body: Input
+) => Promise<Output | null>;
 
-export const GetId = ({ cognitoClient }: Services): GetIdTarget => async (
-  body
-) => {
+export const GetCredentialsForIdentity = ({
+  cognitoClient,
+}: Services): GetCredentialsForIdentityTarget => async (body) => {
   const keys = Object.keys(body.Logins);
   for (let k = 0; k < keys.length; k++) {
     const key = keys[k];
@@ -42,7 +49,13 @@ export const GetId = ({ cognitoClient }: Services): GetIdTarget => async (
       }
 
       const output: Output = {
-        IdentityId: user.IdentityId,
+        IdentityId: body.IdentityId,
+        Credentials: {
+          AccessKeyId: uuid.v4(),
+          Expiration: new Date().getTime() + 30000,
+          SecretKey: uuid.v4(),
+          SessionToken: uuid.v4(),
+        },
       };
 
       return output;
